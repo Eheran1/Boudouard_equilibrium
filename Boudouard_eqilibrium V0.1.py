@@ -55,7 +55,7 @@ def calculate_mole_fractions(K_eq_func, p_total, label, color):
         p_CO2_init_adjusted = fsolve(equilibrium_function, p_CO2_initial, args=(K_eq_func, T, p_total, p_CO_initial))[0]
         # Calculate equilibrium pressures with the adjusted p_CO2_initial
         K_eq = K_eq_func(T)
-        K_eq_p_corrected = K_eq * (p_standard/p_total)
+        K_eq_p_corrected = K_eq# * (p_standard/p_total)
         x = 1/8 * (K_eq_p_corrected**0.5 * (8 * p_CO_initial + 16 * p_CO2_init_adjusted + K_eq_p_corrected)**0.5 - 4 * p_CO_initial - K_eq_p_corrected)
         p_CO2_eq = p_CO2_init_adjusted - x
         p_CO_eq = p_CO_initial + 2 * x
@@ -80,7 +80,7 @@ def calculate_mole_fractions(K_eq_func, p_total, label, color):
 # Function to first calculate equilibrium pressures and then the error to the target pressure to correct for changes in volume
 def equilibrium_function(p_CO2_initial, K_eq_func, T, p_total, p_CO_initial):
     K_eq = K_eq_func(T)
-    K_eq_p_corrected = K_eq * (p_standard/p_total)
+    K_eq_p_corrected = K_eq# * (p_standard/p_total)
     x = 1/8 * (K_eq_p_corrected**0.5 * (8 * p_CO_initial + 16 * p_CO2_initial + K_eq_p_corrected)**0.5 - 4 * p_CO_initial - K_eq_p_corrected)
     p_CO2_eq = p_CO2_initial - x
     p_CO_eq = p_CO_initial + 2 * x
